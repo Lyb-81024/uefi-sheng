@@ -95,12 +95,12 @@ READ_LOCK_STATUS   = TRUE
   INF MdeModulePkg/Universal/Acpi/AcpiPlatformDxe/AcpiPlatformDxe.inf
   INF RuleOverride = ACPITABLE ginkgo/AcpiTables.inf
 
-  # Device Tree
-  #INF EmbeddedPkg/Drivers/DtPlatformDxe/DtPlatformDxe.inf
-  #FILE FREEFORM = 25462CDA-221F-47DF-AC1D-259CFAA4E326 {
-  #  SECTION RAW = ginkgoPkg/FdtBlob/sm6125-xiaomi-ginkgo.dtb
-  #  SECTION UI = "DeviceTreeBlob"
-  #}
+    # Device Tree
+  INF EmbeddedPkg/Drivers/DtPlatformDxe/DtPlatformDxe.inf
+  FILE FREEFORM = 25462CDA-221F-47DF-AC1D-259CFAA4E326 {
+    SECTION RAW = ginkgoPkg/sm6125-xiaomi-ginkgo.dtb
+    SECTION UI = "DeviceTreeBlob"
+  }
 
   # USB Power	
   INF NicobarPkg/Drivers/UsbPwrEnablerDxe/UsbPwrEnablerDxe.inf
