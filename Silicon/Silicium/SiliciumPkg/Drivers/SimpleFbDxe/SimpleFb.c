@@ -226,9 +226,9 @@ CreateFrameBufferConfig (IN EFI_PHYSICAL_ADDRESS BaseAddress)
 
   // Create FrameBufferBltLib Configuration
   Status = FrameBufferBltConfigure ((VOID *)(UINTN)BaseAddress, mFrameBuffer.Mode->Info, FrameBufferConfiguration, &FrameBufferConfigurationSize);
-  if (EFI_ERROR (Status)) {
-    DEBUG ((EFI_D_ERROR, "Failed to Create the Frame Buffer Configuration! Status = %r\n", Status));
-    return Status;
+   if (!FrameBufferRegion.Address) {
+    DEBUG ((EFI_D_ERROR, "Failed to Locate \"Display Reserved\" Memory Region! Using ginkgo fallback.\n"));
+    FrameBufferRegion.Address = 0x5C000000;
   }
 
   return EFI_SUCCESS;
