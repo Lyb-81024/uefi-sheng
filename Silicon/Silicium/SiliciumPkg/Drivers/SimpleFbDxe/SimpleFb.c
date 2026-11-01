@@ -98,9 +98,9 @@ GetFrameBufferInfos (
   LocateMemoryRegionByName ("Display_Reserved", &FrameBufferRegion);
 
   // Verify Frame Buffer Region
-  if (!FrameBufferRegion.Address) {
-    DEBUG ((EFI_D_ERROR, "Failed to Locate \"Display Reserved\" Memory Region!\n"));
-    return EFI_NOT_FOUND;
+   if (!FrameBufferRegion.Address) {
+    DEBUG ((EFI_D_ERROR, "Failed to Locate \"Display Reserved\" Memory Region! Using ginkgo fallback.\n"));
+    FrameBufferRegion.Address = 0x5C000000;
   }
 
   // Get Frame Buffer Details
@@ -226,9 +226,9 @@ CreateFrameBufferConfig (IN EFI_PHYSICAL_ADDRESS BaseAddress)
 
   // Create FrameBufferBltLib Configuration
   Status = FrameBufferBltConfigure ((VOID *)(UINTN)BaseAddress, mFrameBuffer.Mode->Info, FrameBufferConfiguration, &FrameBufferConfigurationSize);
-   if (!FrameBufferRegion.Address) {
-    DEBUG ((EFI_D_ERROR, "Failed to Locate \"Display Reserved\" Memory Region! Using ginkgo fallback.\n"));
-    FrameBufferRegion.Address = 0x5C000000;
+  if (EFI_ERROR (Status)) {
+    DEBUG ((EFI_D_ERROR, "Failed to Create the Frame Buffer Configuration! Status = %r\n", Status));
+    return Status;
   }
 
   return EFI_SUCCESS;
