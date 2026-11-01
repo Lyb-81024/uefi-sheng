@@ -23,7 +23,7 @@
   BUILD_TARGETS                  = RELEASE|DEBUG
   SKUID_IDENTIFIER               = DEFAULT
   FLASH_DEFINITION               = ginkgoPkg/ginkgo.fdf
-  USE_CUSTOM_DISPLAY_DRIVER      = 1
+  USE_CUSTOM_DISPLAY_DRIVER      = 0
 
 !include NicobarPkg/NicobarPkg.dsc.inc
 
